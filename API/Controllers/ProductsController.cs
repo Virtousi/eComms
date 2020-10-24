@@ -26,9 +26,28 @@ namespace API.Controllers
         //public async Task<ActionResult<List<Product>>> GetProducts()
         public async Task<ActionResult<List<Product>>> GetProducts()
         {
-            var products = await _repo.GetProductsByIdAsync();
+            var products = await _repo.GetProductsAsync();
 
             return Ok(products);
+        }
+
+        [HttpGet("brands")]
+        public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
+        {
+            var productBrands = await _repo.GetProductBrandsAsync();
+
+            return Ok(productBrands);
+            //return Ok(await _repo.GetProductBrandsAsync());
+        }
+
+
+        [HttpGet("types")]
+        public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()
+        {
+            var productTypes = await _repo.GetProductTypesAsync();
+
+            return Ok(productTypes);
+            //return Ok(await _repo.GetProductTypesAsync());
         }
 
         [HttpGet("{id}")]
