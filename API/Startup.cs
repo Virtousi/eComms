@@ -1,3 +1,5 @@
+using API.Helpers;
+using AutoMapper;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Data.Migrations;
@@ -25,8 +27,10 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             //what is addscoped? Something about the lifetime
-            services.AddScoped<IProductRepository,ProductRepository>(); 
+            services.AddScoped<IProductRepository,ProductRepository>();
+            services.AddScoped(typeof(IGenericRespository<>),(typeof(GenericResponsitory<>))); 
             services.AddControllers();
+            services.AddAutoMapper(typeof(MappingProfiles));
             services.AddDbContext<StoreContext>(x => 
             x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
         }
