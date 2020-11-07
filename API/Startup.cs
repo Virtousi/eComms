@@ -47,6 +47,9 @@ namespace API
 
             app.UseRouting();
 
+            //to add this to include images from wwwroot
+            app.UseStaticFiles();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
